@@ -1,5 +1,6 @@
 # Asset-Tracking-System
 It is a blockchain application which can help in tracking of assets.
+The code is in the respective branches.
 
 ## Technologies Used:
 1. Angular JS for frontend
@@ -19,14 +20,14 @@ It is a blockchain application which can help in tracking of assets.
 
 
 ## Steps to run the backend in java
-1) Clone the Project
+1) Clone the Project from backend branch
 2) Install all the dependencies
 3) Change the database configuration and blockchain account's private key
 4) Run application
 5) Open http://localhost:8088/swagger-ui.html#/ in the browser to check the APIs
 
 ## Steps to run the frontend in angular
-1) Clone the Project
+1) Clone the Project from frontend branch
 2) Go inside the src folder and run the command 'npm install'
 3) After successful installation run the command 'ng serve'
 4) Install the packages if not properly install by using 'npm install package_name' For eg: 'npm install @nobel/curves' and run 'ng serve' 
