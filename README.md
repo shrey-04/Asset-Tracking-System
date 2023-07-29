@@ -1,6 +1,6 @@
 # Asset-Tracking-System
 It is a blockchain application which can help in tracking of assets.
-The code is in the respective branches.
+The backend and frontend code is in the respective branches.
 
 ## Technologies Used:
 1. Angular JS for frontend
