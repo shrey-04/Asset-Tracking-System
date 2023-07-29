@@ -1,0 +1,62 @@
+server.port: 8088
+
+spring:
+  application-name: Logistics App
+  security.oauth2:
+    client.registration:
+      google:
+        provider: google
+        clientId: 124697222718-vi3m8jsed1mpf7eqsvr0lrl2mk741rjd.apps.googleusercontent.com
+        clientSecret: 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
+        redirectUri: "{baseUrl}/oauth2/callback/{registrationId}"
+        scope:
+          - email
+          - profile
+      facebook:
+        provider: facebook
+        clientId: 667492927624794
+        clientSecret: 5be1a95938069e88c3fad5c641b023c4
+        redirectUri: "{baseUrl}/oauth2/callback/{registrationId}"
+        scope:
+          - email
+          - public_profile
+
+  datasource:
+    url: jdbc:postgresql://localhost:26257/logistics_db
+    username: root
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    hibernate.ddl-auto: update
+    properties.hibernate.dialect: org.hibernate.dialect.PostgreSQL95Dialect
+    show-sql: false
+  flyway:
+    enabled: true
+    baselineOnMigrate: true
+    locations: classpath:db/migration
+
+app:
+  secret: 'someSecret'
+  tokenExpirationTimeInHrs: 12
+
+chain:
+  addresses:
+    rpc: http://localhost:7545
+  account:
+    wallet-directory: "src/main/resources/wallet-files/"
+    private-key: d9ca239efcef4a2d0d38ea37228f304e248a76c8599170b3cea932af52e4e351
+  gas-price: 0
+  gas-limit: 3000000
+
+management:
+  endpoint.web:
+    cors:
+      allowed-origins: http://localhost:4200
+      allowed-methods: GET,POST,PUT,DELETE,PATCH,OPTIONS
+      allowed-headers: Authorization, Content-type
+      allow-credentials: true
+      max-age: 1800
+    exposure:
+      incude: "*"
+      exclude: threaddump
+  shutdown.enabled: false
+  health.enabled: true

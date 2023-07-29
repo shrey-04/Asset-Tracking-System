@@ -1,0 +1,73 @@
+
+t
+java:S2293Z"YReplace the type specification in this constructor call with the diamond operator ("<>").(ó×¥Æùÿÿÿÿ
+t
+java:S2293}"YReplace the type specification in this constructor call with the diamond operator ("<>").(‹™×…ÿÿÿÿÿ
+u
+java:S2293 "YReplace the type specification in this constructor call with the diamond operator ("<>").(Ë¶úßüÿÿÿÿ
+>
+java:S1604g"(Make this anonymous inner class a lambda(à†‡
+?
+java:S1604Š"(Make this anonymous inner class a lambda(£¥
+D
+java:S1604­"(Make this anonymous inner class a lambda(ı‘Üïşÿÿÿÿ
+l
+java:S1104Ÿ"PMake role a static final constant or non-public and provide accessors if needed.(¢°úùÿÿÿÿ
+y
+java:S1104¡"]Make previousAdminRole a static final constant or non-public and provide accessors if needed.(º¸¶ùÿÿÿÿ
+o
+java:S1104£"XMake newAdminRole a static final constant or non-public and provide accessors if needed.(•œ …
+l
+java:S1104§"PMake role a static final constant or non-public and provide accessors if needed.(¢°úùÿÿÿÿ
+o
+java:S1104©"SMake account a static final constant or non-public and provide accessors if needed.(½íúÿÿÿÿ
+n
+java:S1104«"RMake sender a static final constant or non-public and provide accessors if needed.(ºûüúÿÿÿÿ
+l
+java:S1104¯"PMake role a static final constant or non-public and provide accessors if needed.(¢°úùÿÿÿÿ
+o
+java:S1104±"SMake account a static final constant or non-public and provide accessors if needed.(½íúÿÿÿÿ
+n
+java:S1104³"RMake sender a static final constant or non-public and provide accessors if needed.(ºûüúÿÿÿÿ
+7
+java:S1116<"Remove this empty statement.(Åñ­õşÿÿÿÿ
+7
+java:S1116@"Remove this empty statement.(Åñ­õşÿÿÿÿ
+7
+java:S1116D"Remove this empty statement.(Åñ­õşÿÿÿÿ
+^
+java:S6355F"HAdd 'since' and/or 'forRemoval' arguments to the @Deprecated annotation.(õˆúš
+K
+java:S1133G"5Do not forget to remove this deprecated code someday.(ßĞÊ³
+>
+java:S1123G"(Add the missing @deprecated Javadoc tag.(ßĞÊ³
+^
+java:S6355O"HAdd 'since' and/or 'forRemoval' arguments to the @Deprecated annotation.(õˆúš
+P
+java:S1133P"5Do not forget to remove this deprecated code someday.(‹ô˜úÿÿÿÿ
+C
+java:S1123P"(Add the missing @deprecated Javadoc tag.(‹ô˜úÿÿÿÿ
+_
+java:S6355ú"HAdd 'since' and/or 'forRemoval' arguments to the @Deprecated annotation.(õˆúš
+Q
+java:S1133û"5Do not forget to remove this deprecated code someday.(¯³µ‰şÿÿÿÿ
+D
+java:S1123û"(Add the missing @deprecated Javadoc tag.(¯³µ‰şÿÿÿÿ
+_
+java:S6355ÿ"HAdd 'since' and/or 'forRemoval' arguments to the @Deprecated annotation.(õˆúš
+L
+java:S1133€"5Do not forget to remove this deprecated code someday.(«´ÍË
+?
+java:S1123€"(Add the missing @deprecated Javadoc tag.(«´ÍË
+_
+java:S6355"HAdd 'since' and/or 'forRemoval' arguments to the @Deprecated annotation.(õˆúš
+Q
+java:S1133‘"5Do not forget to remove this deprecated code someday.(ûùà´ÿÿÿÿÿ
+D
+java:S1123‘"(Add the missing @deprecated Javadoc tag.(ûùà´ÿÿÿÿÿ
+_
+java:S6355™"HAdd 'since' and/or 'forRemoval' arguments to the @Deprecated annotation.(õˆúš
+Q
+java:S1133š"5Do not forget to remove this deprecated code someday.(Êº›£üÿÿÿÿ
+D
+java:S1123š"(Add the missing @deprecated Javadoc tag.(Êº›£üÿÿÿÿ

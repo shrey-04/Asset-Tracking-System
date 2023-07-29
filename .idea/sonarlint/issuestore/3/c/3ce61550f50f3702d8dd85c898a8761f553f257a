@@ -1,0 +1,37 @@
+
+^
+java:S6355 "HAdd 'since' and/or 'forRemoval' arguments to the @Deprecated annotation.(õˆúš
+K
+java:S1133!"5Do not forget to remove this deprecated code someday.(­óØÜ
+>
+java:S1123!"(Add the missing @deprecated Javadoc tag.(­óØÜ
+^
+java:S6355)"HAdd 'since' and/or 'forRemoval' arguments to the @Deprecated annotation.(õˆúš
+K
+java:S1133*"5Do not forget to remove this deprecated code someday.(—·˜†
+>
+java:S1123*"(Add the missing @deprecated Javadoc tag.(—·˜†
+^
+java:S63559"HAdd 'since' and/or 'forRemoval' arguments to the @Deprecated annotation.(õˆúš
+K
+java:S1133:"5Do not forget to remove this deprecated code someday.(Â¶ûÇ
+>
+java:S1123:"(Add the missing @deprecated Javadoc tag.(Â¶ûÇ
+^
+java:S6355>"HAdd 'since' and/or 'forRemoval' arguments to the @Deprecated annotation.(õˆúš
+K
+java:S1133?"5Do not forget to remove this deprecated code someday.(Ù®Õü
+>
+java:S1123?"(Add the missing @deprecated Javadoc tag.(Ù®Õü
+^
+java:S6355O"HAdd 'since' and/or 'forRemoval' arguments to the @Deprecated annotation.(õˆúš
+K
+java:S1133P"5Do not forget to remove this deprecated code someday.(õ®¼ù
+>
+java:S1123P"(Add the missing @deprecated Javadoc tag.(õ®¼ù
+^
+java:S6355X"HAdd 'since' and/or 'forRemoval' arguments to the @Deprecated annotation.(õˆúš
+K
+java:S1133Y"5Do not forget to remove this deprecated code someday.(…‚‘Ç
+>
+java:S1123Y"(Add the missing @deprecated Javadoc tag.(…‚‘Ç
