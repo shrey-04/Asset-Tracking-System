@@ -19,22 +19,22 @@ It is a blockchain application which can help in tracking of assets.
 
 
 ## Steps to run the backend in java
-Step 1) Clone the Project
-Step 2) Install all the dependencies
-Step 3) Change the database configuration and blockchain account's private key
-Step 4) Run application
-Step 5) Open http://localhost:8088/swagger-ui.html#/ in the browser to check the APIs
+1) Clone the Project
+2) Install all the dependencies
+3) Change the database configuration and blockchain account's private key
+4) Run application
+5) Open http://localhost:8088/swagger-ui.html#/ in the browser to check the APIs
 
 ## Steps to run the frontend in angular
-Step 1) Clone the Project
-Step 2) Go inside the src folder and run the command 'npm install'
-Step 3) After successful installation run the command 'ng serve'
-Step 4) Install the packages if not properly install by using 'npm install package_name' For eg: 'npm install @nobel/curves' and run 'ng serve' 
-Step 5) Open localhost:4200 in the browser
+1) Clone the Project
+2) Go inside the src folder and run the command 'npm install'
+3) After successful installation run the command 'ng serve'
+4) Install the packages if not properly install by using 'npm install package_name' For eg: 'npm install @nobel/curves' and run 'ng serve' 
+5) Open localhost:4200 in the browser
 
 
 ## Steps to create database and configure ganache
-Step 1) Install MYSQL server and Ganache
-Step 2) Open MYSQL command line client and create database using command 'create database db_name;'
-Step 3) Open Ganache and get the private key of one of the ten accounts listed.
-Step 4) Use the above details in the spring boot application
+1) Install MYSQL server and Ganache
+2) Open MYSQL command line client and create database using command 'create database db_name;'
+3) Open Ganache and get the private key of one of the ten accounts listed.
+4) Use the above details in the spring boot application
