@@ -8,7 +8,6 @@ import Swal from 'sweetalert2';
 import { UserMaster } from 'src/app/interfaces/user-master';
 import { UserMasterService } from 'src/app/services/user-master.service';
 import { TradeInitiationRequest } from 'src/app/interfaces/trade-initiation-request';
-import { NftMarketPlaceService } from 'src/app/services/nft-market-place.service';
 @Component({
   selector: 'app-create-shipment',
   templateUrl: './create-shipment.component.html',
@@ -58,7 +57,6 @@ export class CreateShipmentComponent implements OnInit, OnDestroy {
   constructor(
     private assetServiceService: AssetServiceService,
     private router: Router,
-    private nftMarketService: NftMarketPlaceService,
     private activatedRoute: ActivatedRoute,
     private userMasterService: UserMasterService
   ) {
