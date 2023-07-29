@@ -1,0 +1,282 @@
+<section class="content-header">
+  <div class="container-fluid">
+    <div class="row mb-2">
+      <div class="col-sm-6">
+        <h1>Shipment</h1>
+      </div>
+    </div>
+  </div><!-- /.container-fluid -->
+</section>
+<section class="content-header">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="card card-info">
+          <div class="card-header">
+            <h3 class="card-title">Create new shipment</h3>
+          </div>
+          <mat-horizontal-stepper linear>
+            <mat-step label="Asset Details" [stepControl]="assetDetails">
+              <form [formGroup]="assetDetails">
+                <div class="card-body">
+
+                  <div class="form-group row">
+                    <label for="assetname" class="col-sm-4 col-form-label">Asset Name :</label>
+                    <div class="col-sm-7">
+                      <input type="text" id="assetname" name="assetName" formControlName="assetName"
+                      class="form-control"/>
+                    <ul class="text-danger mt-1 list-unstyled"
+                      *ngIf="(formSubmitted||assetDetails.controls['assetName'].dirty) && assetDetails.controls['assetName'].invalid">
+                      <li *ngFor="let error of getValidationMessages(assetDetails.controls['assetName'])">
+                        {{error}}
+                      </li>
+                    </ul>
+                    </div>
+                  </div>
+                  <div class="form-group row">
+                    <label for="info" class="col-sm-4 col-form-label"> Asset Description: </label>
+                  <div class="col-sm-7">
+                    <input type="text" name="info" formControlName="info" class="form-control"/>
+                    <ul class="text-danger mt-1 list-unstyled"
+                      *ngIf="(formSubmitted||assetDetails.controls['info'].dirty) && assetDetails.controls['info'].invalid">
+                      <li *ngFor="let error of getValidationMessages(assetDetails.controls['info'])">
+                        {{error}}
+                      </li>
+                    </ul>
+                  </div></div>
+                  <div class="form-group row">
+                    <label for="assetType" class="col-sm-4 col-form-label"> Asset Type: </label>
+                    <div class="col-sm-7">
+                      <input type="text" name="assetType" formControlName="assetType"
+                      class=" form-control"/>
+                    <ul class="text-danger mt-1 list-unstyled"
+                      *ngIf="(formSubmitted||assetDetails.controls['assetType'].dirty) && assetDetails.controls['assetType'].invalid">
+                      <li *ngFor="let error of getValidationMessages(assetDetails.controls['assetType'])">
+                        {{error}}
+                      </li>
+                    </ul>
+                    </div>
+                  </div>
+                  <div class="form-group row">
+                    <label for="quantity" class="col-sm-4 col-form-label">Asset Quantity: </label>
+                    <div class="col-sm-7">
+                      <input type="text" name="quantity" formControlName="quantity"
+                      class="form-control"/>
+                    <ul class="text-danger mt-1 list-unstyled"
+                      *ngIf="(formSubmitted||assetDetails.controls['quantity'].dirty) && assetDetails.controls['quantity'].invalid">
+                      <li
+                        *ngFor="let error of getValidationMessages(assetDetails.controls['quantity'])">
+                        {{error}}
+                      </li>
+                    </ul>
+                    </div>
+                  </div>
+                  <div class="form-group row">
+                    <label for="tokenAmount" class="col-sm-4 col-form-label">Tokens: </label>
+                    <div class="col-sm-7">
+                      <input type="text" name="tokenAmount" formControlName="tokenAmount"
+                      class="form-control"/>
+                    <ul class="text-danger mt-1 list-unstyled"
+                      *ngIf="(formSubmitted||assetDetails.controls['tokenAmount'].dirty) && assetDetails.controls['tokenAmount'].invalid">
+                      <li
+                        *ngFor="let error of getValidationMessages(assetDetails.controls['tokenAmount'])">
+                        {{error}}
+                      </li>
+                    </ul>
+                    </div>
+                  </div>
+                  <div class="form-group row">
+                    <div class="col-sm-4"></div>
+                    <div class="col-sm-7">
+                      <button value="Add" [disabled]="assetDetails.invalid" matStepperNext
+                      class="btn btn-primary mt-4">
+                      <i class="fas fa-arrow-right"></i>
+                      Next
+                    </button>
+                    </div>
+                  </div>
+
+
+              </div>
+              </form>
+            </mat-step>
+            <!------------------------- Supplier Details---------------------------------- -->
+            <mat-step label="Supplier Details" [stepControl]="supplierDetails">
+              <form [formGroup]="supplierDetails" >
+                <div class="card-body">
+
+                  <div class="form-group row">
+                    <label for="name" class="col-sm-4 col-form-label">Name :</label>
+                     <div class="col-sm-7">
+                      <input type="text" id="name" name="name" formControlName="name"
+                          class="form-control" readonly/>
+                        <ul class="text-danger mt-1 list-unstyled"
+                          *ngIf="(formSubmitted||supplierDetails.controls['name'].dirty) && supplierDetails.controls['name'].invalid">
+                          <li *ngFor="let error of getValidationMessages(supplierDetails.controls['name'])">
+                            {{error}}
+                          </li>
+                        </ul>
+                    </div>
+                  </div>
+                    <div class="form-group row">
+                    <label for="address" class="col-sm-4 col-form-label">Address :</label>
+                     <div class="col-sm-7">
+                      <input type="text" id="address" name="address" formControlName="address"
+                          class="form-control"/>
+                        <ul class="text-danger mt-1 list-unstyled"
+                          *ngIf="(formSubmitted||supplierDetails.controls['address'].dirty) && supplierDetails.controls['address'].invalid">
+                          <li *ngFor="let error of getValidationMessages(supplierDetails.controls['address'])">
+                            {{error}}
+                          </li>
+                        </ul>
+                    </div>
+                  </div>
+                    <div class="form-group row">
+                    <label for="mobile_no" class="col-sm-4 col-form-label">Mobile :</label>
+                     <div class="col-sm-7">
+                      <input type="text" id="mobile_no" name="mobile_no" formControlName="mobile_no"
+                          class="form-control"/>
+                        <ul class="text-danger mt-1 list-unstyled"
+                          *ngIf="(formSubmitted||supplierDetails.controls['mobile_no'].dirty) && supplierDetails.controls['mobile_no'].invalid">
+                          <li *ngFor="let error of getValidationMessages(supplierDetails.controls['mobile_no'])">
+                            {{error}}
+                          </li>
+                        </ul>
+                    </div>
+                  </div>
+                    <div class="form-group row">
+                    <label for="email" class="col-sm-4 col-form-label">Email :</label>
+                     <div class="col-sm-7">
+                      <input type="text" id="email" name="email" formControlName="email"
+                          class="form-control" readonly/>
+                        <ul class="text-danger mt-1 list-unstyled"
+                          *ngIf="(formSubmitted||supplierDetails.controls['email'].dirty) && supplierDetails.controls['email'].invalid">
+                          <li *ngFor="let error of getValidationMessages(supplierDetails.controls['email'])">
+                            {{error}}
+                          </li>
+                        </ul>
+                    </div>
+                  </div>
+                  <div class=" row">
+                    <div class="col-sm-4"></div>
+                    <div class="form-group col-sm-2">
+                      <button value="Add" matStepperPrevious
+                      class="btn btn-info mt-4">
+                      <i class="fas fa-arrow-left"></i>
+                      Previous
+                    </button>
+                    </div>
+
+                    <div class="form-group col-sm-2">
+                      <button value="Add" [disabled]="supplierDetails.invalid" matStepperNext
+                      class="btn btn-primary mt-4">
+                      <i class="fas fa-arrow-right"></i>
+                      Next
+                    </button>
+                    </div>
+                  </div>
+
+
+              </div>
+              </form>
+            </mat-step>
+            <!-------------------------- Consignee Details ---------------------->
+            <mat-step label="Consignee Details" [stepControl]="consigneeDetails">
+              <form [formGroup]="consigneeDetails" (ngSubmit)="addAsset()">
+                <div class="card-body">
+
+                  <div class="form-group row">
+                    <!-- <label for="Search">Search User By Role:</label>
+                    <select name="role" (change) = "getUsersByRole($event)" class="form-control">
+                      <option [selected] = "true" [disabled] = "true">Search Role </option>
+                      <option value="{{role.role}}" *ngFor="let role of roleList">{{role.role | roleConverter | titlecase}}</option>
+                    </select> -->
+                    <label for="name" class="col-sm-4 col-form-label">Name :</label>
+                     <div class="col-sm-7">
+                      <!-- <select formControlName="name" name="name" class="form-control" (change) = "getUserDetails($event)" 
+                      [style.border]="consigneeDetails.controls['name'].value!='Search User'?'2px solid #6bc502':''">
+                        <option [selected] = "true" [disabled] = "true">Search User </option>
+                        <option value="{{user.name}}" *ngFor="let user of userList">{{ user.name }}</option>
+                      </select> -->
+                      <input type="text" id="name" name="name" formControlName="name"
+                          class="form-control"/>
+                        <ul class="text-danger mt-1 list-unstyled"
+                          *ngIf="(formSubmitted||consigneeDetails.controls['name'].dirty) && consigneeDetails.controls['name'].invalid">
+                          <li *ngFor="let error of getValidationMessages(consigneeDetails.controls['name'])">
+                            {{error}}
+                          </li>
+                        </ul>
+                    </div>
+                  </div>
+                    <div class="form-group row">
+                    <label for="address" class="col-sm-4 col-form-label">Address :</label>
+                     <div class="col-sm-7">
+                      <input type="text" id="address" name="address" formControlName="address"
+                          class="form-control"/>
+                        <ul class="text-danger mt-1 list-unstyled"
+                          *ngIf="(formSubmitted||consigneeDetails.controls['address'].dirty) && consigneeDetails.controls['address'].invalid">
+                          <li *ngFor="let error of getValidationMessages(consigneeDetails.controls['address'])">
+                            {{error}}
+                          </li>
+                        </ul>
+                    </div>
+                  </div>
+                    <div class="form-group row">
+                    <label for="mobile_no" class="col-sm-4 col-form-label">Mobile :</label>
+                     <div class="col-sm-7">
+                      <input type="text" id="mobile_no" name="mobile_no" formControlName="mobile_no"
+                          class="form-control"/>
+                        <ul class="text-danger mt-1 list-unstyled"
+                          *ngIf="(formSubmitted||consigneeDetails.controls['mobile_no'].dirty) && consigneeDetails.controls['mobile_no'].invalid">
+                          <li *ngFor="let error of getValidationMessages(consigneeDetails.controls['mobile_no'])">
+                            {{error}}
+                          </li>
+                        </ul>
+                    </div>
+                  </div>
+                    <div class="form-group row">
+                    <label for="email" class="col-sm-4 col-form-label">Email :</label>
+                     <div class="col-sm-7">
+                      <input type="text" id="email" name="email" formControlName="email"
+                          class="form-control"/>
+                        <ul class="text-danger mt-1 list-unstyled"
+                          *ngIf="(formSubmitted||consigneeDetails.controls['email'].dirty) && consigneeDetails.controls['email'].invalid">
+                          <li *ngFor="let error of getValidationMessages(consigneeDetails.controls['email'])">
+                            {{error}}
+                          </li>
+                        </ul>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-sm-4"></div>
+                    <div class="form-group col-sm-2">
+                      <button value="Add" matStepperPrevious
+                      class="btn btn-info mt-4">
+                      <i class="fas fa-arrow-left"></i>
+                      Previous
+                    </button>
+                    </div>
+                    <div class="form-group col-sm-2">
+                      <button type="submit" value="Add" [disabled]="consigneeDetails.invalid || supplierDetails.invalid || assetDetails.invalid || consigneeDetails.controls['name'].value=='Search User'"
+                      class="btn btn-primary mt-4">
+                      <i class="fa fa-plus"></i>
+                      Create
+                    </button>
+                    </div>
+                  </div>
+
+
+                <div class=" row">
+                  <div class="col-sm-4"></div>
+
+                </div>
+              </div>
+              </form>
+            </mat-step>
+          </mat-horizontal-stepper>
+        <!-- </form> -->
+        </div>
+      </div>
+    </div>
+  </div><!-- /.container-fluid -->
+</section>

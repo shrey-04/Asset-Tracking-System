@@ -1,0 +1,21 @@
+<div class="container-fluid">
+    <div class="row">
+        <!-- <div class="col-sm-1"></div> -->
+        <div class="col-sm-12">
+            <div class="card card-info shadow w-75 mx-auto mt-3" >
+                <div class="card-header">
+                    Notifications
+                </div>
+                <div class="overflow-auto" style="height: 600px;">
+                    <div class="card shadow-sm m-2 bg-body rounded" *ngFor="let transaction of transactions; let i= index">
+                        <div class="card-body clearfix">
+                            <span class="float-start">{{ transaction | getMessage }}</span>
+                            <span class="float-end"><i class="fas fa-trash-alt delete" (click) = "deleteNotification(i)" ></i></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- <div class="col-sm-1"></div> -->
+    </div>
+</div>

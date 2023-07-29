@@ -1,0 +1,42 @@
+.font-weight-light
+{
+    /* padding-left: 30%; */
+}
+
+.font-style {
+  font-family: cursive;
+}
+/* .info
+{
+    width: 100%;
+} */
+.d-block
+{
+    padding-left: 15%;
+}
+
+#links:hover {
+  background-color: rgba(255,255,255,.1);
+  color: #fff;
+}
+
+
+#sublinks:hover{
+  background-color: rgba(255,255,255,.1);
+  color: #fff;
+}
+
+#links.active {
+  background-color: rgba(255,255,255,.1);
+  color: #fff;
+}
+
+#sublinks.active {
+  background-color: rgba(255,255,255,.1);
+  color: #fff;
+}
+
+
+
+
+

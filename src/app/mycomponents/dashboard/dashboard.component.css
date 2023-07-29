@@ -1,0 +1,46 @@
+
+hr {
+  border-top: "2px solid #5161ce";
+}
+
+
+#card-header {
+  background-color:#5161ce;
+}
+
+#card-header-2 {
+  background-color: #76b900;
+}
+
+#card-header-3 {
+  background-color: purple;
+}
+
+
+#card-header-4 {
+  background-color: blueviolet;
+}
+
+
+
+thead {
+  background-color: #5161ce ;
+}
+
+#asset {
+  height: 60%;
+  width: 60%;
+}
+
+#block {
+  height: 60%;
+  width: 60%;
+}
+
+.delete{
+  color: rgba(0, 0, 0, 0.377);
+}
+.delete:hover{
+  color: rgb(211, 5, 5);
+  cursor: pointer;
+}

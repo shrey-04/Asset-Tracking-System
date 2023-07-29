@@ -1,0 +1,64 @@
+<app-header *ngIf="subMenuState"></app-header>
+<app-side-nav *ngIf="subMenuState"></app-side-nav>
+<div class="content-wrapper" *ngIf="subMenuState">
+    <router-outlet></router-outlet>
+</div>
+<app-login *ngIf="!subMenuState && !register"></app-login>
+<app-register-user *ngIf="register"></app-register-user>
+
+
+<!-- <div  class="card m-3  "> -->
+    <!-- <div *ngIf="isVisible" class=" card card-dark mx-auto shadow chat-window" style="max-width:350px">
+      <div class="card-header">
+          <div class="navbar navbar-expand p-0">
+              <ul class="navbar-nav me-auto align-items-center">
+                  <li class="nav-item">
+                      <a class="nav-link text-white">ChatBot</a>
+                  </li>
+              </ul>
+              <ul class="navbar-nav ms-auto">
+                  <li class="nav-item">
+                      <a class="nav-link">
+                          <i class="fas fa-times text-white" (click)="closeChat()" style="cursor:pointer;"></i>
+                      </a>
+                  </li>
+              </ul>
+          </div>
+      </div>
+      <div class="card-body p-4 " style="height: 450px; overflow: auto;" #messagebox>
+          <div class="d-flex align-items-baseline mb-4">
+              <div class="pe-2">
+                  <div>
+                      <div class="card card-text d-inline-block p-2 px-3 m-1 " style="border-radius: 30px 30px 30px 0px;background-color: rgb(201, 221, 235);">
+                        <p> Hi, I am here to help you resolve queries. Kindly select below one option!</p>
+                        <p>
+                          <small>
+                            <button class="btn btn-sm btn-primary p-2 m-2" (click)="getDetails('My Funds', false)">My Funds</button>
+                            <button class="btn btn-sm btn-primary p-2 m-2" (click)="getDetails('Asset Tracking Details', false)">Asset Tracking Details</button>
+                            <button class="btn btn-sm btn-primary p-2 m-2" (click)="getDetails('User Details', false)">User Details</button>
+                          </small>  
+                        </p>
+                      </div>
+                      <div>
+                        <div class="small ">ChatBot</div>
+                    </div>
+  
+                  </div>
+              </div>
+          </div>
+          
+      </div>
+      <div class="card-footer bg-white position-absolute w-100 bottom-0 m-0 p-1">
+        <form [formGroup]="inputText">
+          <div class="input-group">
+              <input type="text" class="form-control border-0" formControlName="text"
+              placeholder="Write a message..." (keyup.enter)="getDetails(inputText.controls['text'].value, true)">
+          </div>
+        </form>
+      </div>
+  </div> -->
+  <!-- <div class="floating-window rounded-circle">
+      <i *ngIf="subMenuState" class="p-3 fas fa-robot fa-2x text-white" (click)="showChat()" style="opacity: 0.9"></i>
+    </div> -->
+ 
+

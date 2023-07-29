@@ -1,0 +1,110 @@
+<section class="content mt-3">
+  <div class="container-fluid">
+    <!-- Small boxes (Stat box) -->
+    <div class="row">
+      
+        <!-- ./col -->
+        <div class="col-lg-4 col-6">
+          <!-- small box -->
+          <div class="small-box card bg-success">
+            <div class="inner">
+              <h4>Blocks Mined</h4>
+
+              <p>Block count: <span *ngIf="blockCount">{{blockCount}}</span></p>
+            </div>
+            <div class="icon">
+              <i class="ion ion-cube"></i>
+            </div>
+          </div>
+        </div>
+        <!-- ./col -->
+        <div class="col-lg-4 col-6">
+          <!-- small box -->
+          <div class="small-box bg-warning">
+            <div class="inner">
+              <h4>Assets Created</h4>
+
+              <p>Total Assets: <span *ngIf="assetCount">{{assetCount}}</span></p>
+            </div>
+            <div class="icon">
+              <!-- <i class="ion ion-person-add"></i> -->
+              <!-- <i class="fas fa-coins"></i> -->
+              <i class="fas fa-hand-holding-usd"></i>
+            </div>
+          </div>
+        </div>
+        <!-- ./col -->
+        <div class="col-lg-4 col-6">
+          <!-- small box -->
+          <div class="small-box bg-danger">
+            <div class="inner">
+              <h4>Contracts</h4>
+
+              <p>Smart Contracts: 2</p>
+            </div>
+            <div class="icon">
+              <!-- <i class="ion ion-document"></i> -->
+              <i class="fas fa-file-signature"></i>
+            </div>
+
+          </div>
+        </div>
+        <!-- ./col -->
+      </div>
+
+      <!-- <div class="row">
+        <div class="col-sm-1"></div>
+        <div class="col-sm-12">
+            <div class="card shadow w-100 mx-auto overflow-auto">
+                <div class="card shadow-sm m-2 bg-body rounded" *ngFor="let notification of notifications">
+                    <div class="card-body clearfix">
+                        <span class="float-start"> {{ notification }}</span>
+                        <span class="float-end"><i class="fas fa-trash-alt delete"></i></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-1"></div>
+    </div> -->
+
+    <div class="row">
+        <div class="col-sm-5 mt-2 mb-2">
+          <div class="card card-info rounded shadow">
+            <div class="card-header">
+              <h3 class="card-title mt-1 text-white">
+                <i class="fas fa-chart-pie mr-1"></i>
+                Asset Status
+              </h3>
+              </div>
+            <div class="card-body">
+              <canvas  id="myChart" ></canvas>
+            </div>
+          </div>
+        </div>
+
+        <!-- <div class="col-sm-7 mt-2 mb-2">
+          <div class="card shadow w-100 mx-auto overflow-auto">
+            <div class="card shadow-sm m-2 bg-body rounded" *ngFor="let notification of notifications">
+                <div class="card-body clearfix">
+                    <span class="float-start"> {{ notification }}</span>
+                    <span class="float-end"><i class="fas fa-trash-alt delete"></i></span>
+                </div>
+            </div>
+        </div>
+        </div> -->
+
+        <div class="col-sm-7 mt-2 mb-2 overflow-auto" style="height: 500px;">
+          <div class="card shadow w-100 mx-auto" *ngIf="flag">
+            <div class="card shadow-sm m-2 bg-body rounded" *ngFor="let transaction of transactions; let i = index" >
+                <div class="card-body clearfix">
+                  <span class="float-start">{{ transaction | getMessage }}</span>
+                  <span class="float-end"><i class="fas fa-trash-alt delete" (click)="deleteNotification(i)"></i></span>
+                </div>
+            </div>
+        </div>
+        </div>
+    </div>
+
+
+      </div>
+      </section>

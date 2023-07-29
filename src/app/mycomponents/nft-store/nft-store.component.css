@@ -1,0 +1,15 @@
+.NFTs{
+    display: flex;
+    flex-wrap: wrap;
+    /* text-align: center;   */
+}
+
+.buy{
+    color: rgb(0, 85, 255);
+}
+
+.buy:hover{
+    color: rgb(0, 51, 255);
+    box-shadow: rgb(227, 228, 229) 0px 3px 10px 10px;
+    background-color: rgb(227, 228, 229);
+}

@@ -1,0 +1,405 @@
+<section class="content-header">
+  <div class="container-fluid">
+    <div class="row mb-2">
+      <div class="col-sm-6 offset-sm-1">
+        <h1>Modify Asset Status</h1>
+      </div>
+    </div>
+  </div><!-- /.container-fluid -->
+</section>
+<section class="content">
+  <div class="container-fluid">
+    <div class="row">
+      <!-- left column -->
+      <div class="col-md-8 offset-sm-1">
+        <!-- general form elements -->
+        <!-- Horizontal Form -->
+        <div class="card card-info">
+          <div class="card-header">
+
+            <div class="d-flex justify-content-between">
+              <span class="pt-1">
+                <h3 class="card-title" *ngIf="singleAssetData.assetState == 'CREATED'">Current Asset status : Created
+                </h3>
+                <h3 class="card-title" *ngIf="singleAssetData.assetState == 'DISPATCHED'">Current Asset status :
+                  Dispatched
+                </h3>
+                <h3 class="card-title" *ngIf="singleAssetData.assetState == 'IN_TRANSIT'">Current Asset status : At
+                  Warehouse
+                </h3>
+                <h3 class="card-title" *ngIf="singleAssetData.assetState == 'FINAL_STATION'">Current Asset status : At
+                  Final Destination
+                </h3>
+                <h3 class="card-title" *ngIf="singleAssetData.assetState == 'OUT_FOR_DELIVERY'">Current Asset status :
+                  Out for Delivery
+                </h3>
+                <h3 class="card-title" *ngIf="singleAssetData.assetState == 'DELIVERED'">Current Asset status :
+                  Delivered
+                </h3>
+              </span>
+              <a [routerLink]="'/shipmentDetails'" style="cursor: pointer;">
+                <i class="fas fa-2x fa-chevron-circle-left"></i>
+              </a>
+            </div>
+
+
+          </div>
+          <!-- /.card-header -->
+          <!-- form start -->
+          <form class="form-horizontal" #assetSubmit="ngForm">
+            <div class="card-body">
+              <div class="form-group row">
+                <label class="col-sm-3 col-form-label">Asset Name:</label>
+                <div class="col-sm-9">
+                  <input type="text" [disabled]="true" name="assetName" ngModel class="form-control"
+                    [(ngModel)]="singleAssetData.assetName" />
+                </div>
+              </div>
+              <div class="form-group row">
+                <label class="col-sm-3 col-form-label">Asset Description:</label>
+                <div class="col-sm-9">
+                  <input [disabled]="true" type="text" name="info" [(ngModel)]="singleAssetData.info"
+                    class="form-control" />
+                </div>
+              </div>
+              <!--------------- Extra labels ----------------->
+
+              <!--1. Created -->
+              <div *ngIf="singleAssetData?.assetState == 'CREATED'">
+                <div class="form-group row">
+                  <label class="col-sm-3 col-form-label">Shipment Created Date:</label>
+                  <div class="col-sm-9">
+                    <input [disabled]="true" type="text" name="assetCreationTime" value="{{singleAssetData.assetCreationTime | date:'dd/MM/yyyy HH:mm:ss' }}" class="form-control" />
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <label class="col-sm-3 col-form-label">Order No:</label>
+                  <div class="col-sm-9">
+                    <input [disabled]="true" type="text" name="orderNo" value="{{singleAsset.orderNo}}" class="form-control" #orderNo/>
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <label class="col-sm-3 col-form-label">Batch No:</label>
+                  <div class="col-sm-9">
+                    <input [disabled]="true" type="text" name="batchNo" value="{{singleAsset.batchNo}}" class="form-control" #batchNo/>
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <label class="col-sm-3 col-form-label">Warehouse Address:</label>
+                  <div class="col-sm-9">
+                    <input [disabled]="false" type="text" name="warehouseAddress" class="form-control" #warehouseAddress/>
+                  </div>
+                </div>
+              </div>
+              <!-- 2. Dispatched -->
+              <div *ngIf="singleAssetData?.assetState == 'DISPATCHED'">
+                <div class="form-group row">
+                  <label class="col-sm-3 col-form-label">Order No:</label>
+                  <div class="col-sm-9">
+                    <input [disabled]="true" type="text" name="orderNo" value="{{singleAsset.orderNo}}" class="form-control" />
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <label class="col-sm-3 col-form-label">Batch No:</label>
+                  <div class="col-sm-9">
+                    <input [disabled]="true" type="text" name="batchNo" value="{{singleAsset.batchNo}}" class="form-control" />
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <label class="col-sm-3 col-form-label">Pick up Time:</label>
+                  <div class="col-sm-9">
+                    <input [disabled]="false" type="datetime-local" name="pickUpdate"  class="form-control" #pickUpDate/>
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <label class="col-sm-3 col-form-label">Bill of Lading No. :</label>
+                  <div class="col-sm-9">
+                    <input [disabled]="false" type="number" name="billOfLading" class="form-control" #billOfLading/>
+                  </div>
+                </div>
+              </div>
+
+              <!-- 3. At Warehouse -->
+              <div *ngIf="singleAssetData?.assetState == 'IN_TRANSIT'">
+                <div class="form-group row">
+                  <label class="col-sm-3 col-form-label">Order No:</label>
+                  <div class="col-sm-9">
+                    <input [disabled]="true" type="text" name="orderNo" value="{{singleAsset.orderNo}}" class="form-control" />
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <label class="col-sm-3 col-form-label">Bill of Lading No. :</label>
+                  <div class="col-sm-9">
+                    <input [disabled]="true" type="text" name="billOfLading"  value="{{singleAsset.billOfLading}}" class="form-control" />
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <label class="col-sm-3 col-form-label">Monitoring Required:</label>
+                  <div class="col-sm-9">
+                    <select name="monitoringReq" (change)="isRequired(monitoringReq.value)"  class="form-control" #monitoringReq>
+                      <option [disabled]="true" value=''>Select</option>
+                      <option value='yes'>Yes</option>
+                      <option value='no'>No</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="form-group row" *ngIf="isReq">
+                  <label class="col-sm-3 col-form-label">Humidity(in %):</label>
+                  <div class="col-sm-9">
+                    <input [disabled]="false" type="number" name="humidity" class="form-control" #humidity/>
+                  </div>
+                </div>
+                <div class="form-group row" *ngIf="isReq">
+                  <label class="col-sm-3 col-form-label">Temperature(in °C):</label>
+                  <div class="col-sm-9">
+                    <input [disabled]="false" type="number" name="temperature" class="form-control" #temperature/>
+                  </div>
+                </div>
+              </div>
+
+              <!-- 4. At final Delivery Location -->
+              <div *ngIf="singleAssetData?.assetState == 'FINAL_STATION'">
+                <div class="form-group row">
+                  <label class="col-sm-3 col-form-label">Order No:</label>
+                  <div class="col-sm-9">
+                    <input [disabled]="true" type="text" name="orderNo" value="{{singleAsset.orderNo}}" class="form-control" />
+                  </div>
+                </div>
+                <div class="form-group row" *ngIf="singleAsset.humidity">
+                  <label class="col-sm-3 col-form-label">Humidity:</label>
+                  <div class="col-sm-9">
+                    <input [disabled]="true" type="text" name="humidity" value="{{singleAsset.humidity}}%" class="form-control" />
+                  </div>
+                </div>
+                <div class="form-group row" *ngIf="singleAsset.temperature">
+                  <label class="col-sm-3 col-form-label">Temperature:</label>
+                  <div class="col-sm-9">
+                    <input [disabled]="true" type="text" name="temperature" value="{{singleAsset.temperature}}°C" class="form-control" />
+                  </div>
+                </div>
+              </div>
+
+              <!-- 5. Out for Delivery -->
+              <div *ngIf="singleAssetData?.assetState == 'OUT_FOR_DELIVERY'">
+                <div class="form-group row">
+                  <label class="col-sm-3 col-form-label">Order No:</label>
+                  <div class="col-sm-9">
+                    <input [disabled]="true" type="text" name="orderNo" value="{{singleAsset.orderNo}}" class="form-control" />
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <label class="col-sm-3 col-form-label">Barcode:</label>
+                  <div class="col-sm-9">
+                    <input [disabled]="true" type="number" name="barcode" value="{{singleAsset.barcode}}" class="form-control" #barcode/>
+                  </div>
+                </div>
+              </div>
+
+
+
+              <!-- <div *ngIf="singleAssetData?.assetState == 'CREATED' || singleAssetData?.assetState == 'IN_TRANSIT'">
+                <div class="form-group row">
+                  <label class="col-sm-3 col-form-label">Invoice No:</label>
+                  <div class="col-sm-9">
+                    <input [disabled]="true" type="text" name="invoice" value="DXQYF5628" class="form-control" />
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <label class="col-sm-3 col-form-label">Humidity:</label>
+                  <div class="col-sm-9">
+                    <input [disabled]="true" type="percent" name="humidity" value="70%" class="form-control" />
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <label class="col-sm-3 col-form-label">Temperature:</label>
+                  <div class="col-sm-9">
+                    <input [disabled]="true" type="text" name="temperature" value="20°C" class="form-control" />
+                  </div>
+                </div>
+              </div> -->
+            </div>
+            <!-- /.card-body -->
+            <div class="card-footer">
+              <div class="d-flex justify-content-between">
+                <div *ngIf="singleAssetData?.assetState == 'CREATED'">
+                  <!-- [hidden]="singleAssetData?.assetState == 'CREATED'" -->
+                  <button type="submit" value="Add" class="btn btn-info" [disabled]="flag"
+                    (click)="prepareForDispatch(singleAssetData.assetId); flag = true;">
+                    <i class="fa fa-truck"></i>
+                    Pick-up from supplier.
+                  </button>
+                </div>
+                <div *ngIf="singleAssetData?.assetState == 'DISPATCHED'">
+                  <button type="submit" value="Add" class="btn btn-info" [disabled]="flag"
+                    (click)="intialMove(singleAssetData.assetId); flag = true;">
+                    <i class="fa fa-street-view"></i>
+                    Received at Warehouse
+                  </button>
+                </div>
+                <div *ngIf="singleAssetData?.assetState == 'IN_TRANSIT'">
+                  <button type="submit" value="Add" class="btn btn-info" [disabled]="flag"
+                    (click)="acknowledgementFinalReceiver(singleAssetData.assetId); flag = true;">
+                    <i class="fa fa-share-square"></i>
+                    Pick-up from Warehouse
+                  </button>
+                </div>
+                <div *ngIf="singleAssetData?.assetState == 'FINAL_STATION'">
+                  <button type="submit" value="Add" class="btn btn-info" [disabled]="flag"
+                    (click)="packageOutForDelivery(singleAssetData.assetId); flag = true;">
+                    <i class="fa fa-upload"></i>
+                    Out for Delivery
+                  </button>
+                </div>
+                <div *ngIf="singleAssetData?.assetState == 'OUT_FOR_DELIVERY'">
+                  <button type="submit" value="Add" class="btn btn-info" [disabled]="flag"
+                    (click)="makeFinalDelivery(singleAssetData.assetId); flag = true;">
+                    <i class="fa fa-shopping-bag"></i>
+                    Confirm Delivery
+                  </button>
+                </div>
+                <p class="text-center text-success h5" *ngIf="singleAssetData?.assetState == 'DELIVERED'">
+                  Shipment has been delivered successfully!.
+                </p>
+                <button class="btn btn-danger" [disabled]="true">
+                  <i class="fas fa-undo-alt"></i> Request for Return
+                </button>
+              </div>
+            </div>
+
+            <!-- /.card-footer -->
+          </form>
+        </div>
+        <!-- /.card -->
+
+      </div>
+      <!--/.col (left) -->
+
+    </div>
+    <!-- /.row -->
+  </div><!-- /.container-fluid -->
+</section>
+<!--<section class="content-header">
+    <div class="container-fluid">
+      <div class="row mb-2">
+        <div class="col-sm-6">
+          <h1>Asset</h1>
+        </div>
+        <div class="col-sm-6">
+          <ol class="breadcrumb float-sm-right">
+            <li class="breadcrumb-item">Modify State</li>
+          </ol>
+        </div>
+      </div>
+    </div>
+  </section>
+  <div class="x_content">
+    <form #assetSubmit="ngForm">
+
+      <div class="row">
+
+
+
+        <div class="col-md-6 col-sm-12 col-xs-12 form-group" style="text-align: left;">
+
+          <label for="loginId">Asset Name :</label>
+          <div class="form-group">
+            <input type="text" [disabled] = "true" style="width: 70%;" name="assetName" ngModel
+              cssClass="lookup-bg form-control btn-xs" [(ngModel)]="singleAssetData.assetName" />
+          </div>
+
+        </div>
+        <div class="col-md-6 col-sm-12 col-xs-12 form-group" style="text-align: left;">
+          <label> Asset Description
+            :</label>
+          <div class="form-group">
+            <input [disabled] = "true" type="text" style="width: 70%;" name="info" [(ngModel)]="singleAssetData.info"
+              cssClass="lookup-bg form-control btn-xs" />
+
+          </div>
+
+
+        </div>
+
+      </div>
+
+
+
+      <div class="row">
+
+
+
+      </div>
+
+      <div class="ln_solid"></div>
+      <div class="row">
+        <div class="col-md-8 col-sm-12 col-xs-12 col-md-offset-3" style="padding-left: 300px;"
+          *ngIf="singleAssetData?.assetState == 'CREATED'">
+
+
+
+          <button type="submit" value="Add" style="width: 50%;" class="btn btn-dark btn-sm"
+            [disabled]="flag" (click)="prepareForDispatch(singleAssetData.assetId); flag = true;">
+            <i class="fa fa-truck"></i>
+            Prepare For Dispatch
+          </button>
+        </div>
+
+        <div class="col-md-8 col-sm-12 col-xs-12 col-md-offset-3" style="padding-left: 300px;"
+          *ngIf="singleAssetData?.assetState == 'DISPATCHED'">
+
+
+
+          <button type="submit" value="Add" style="width: 50%;" class="btn btn-dark btn-sm"
+            [disabled]="flag" (click)="intialMove(singleAssetData.assetId); flag = true;">
+            <i class="fa fa-street-view"></i>
+            Intial Move
+          </button>
+        </div>
+      </div>
+      <br>
+      <div class="row">
+        <div class="col-md-8 col-sm-12 col-xs-12 col-md-offset-3" style="padding-left: 300px;"
+          *ngIf="singleAssetData?.assetState == 'IN_TRANSIT'">
+
+
+
+          <button type="submit" value="Add" style="width: 50%;" class="btn btn-dark btn-sm"
+            [disabled]="flag"
+            (click)="acknowledgementFinalReceiver(singleAssetData.assetId); flag = true;">
+            <i class="fa fa-share-square"></i>
+            Acknowledgement Final Receiver
+          </button>
+        </div>
+
+        <div class="col-md-8 col-sm-12 col-xs-12 col-md-offset-3" style="padding-left: 300px;"
+          *ngIf="singleAssetData?.assetState == 'FINAL_STATION'">
+
+
+
+          <button type="submit" value="Add" style="width: 50%;" class="btn btn-dark btn-sm"
+            [disabled]="flag" (click)="packageOutForDelivery(singleAssetData.assetId); flag = true;">
+            <i class="fa fa-upload"></i>
+            Package Out For Delivery
+          </button>
+        </div>
+      </div>
+      <br>
+      <div class="row">
+        <div class="col-md-8 col-sm-12 col-xs-12 col-md-offset-3" style="padding-left: 300px;"
+          *ngIf="singleAssetData?.assetState == 'OUT_FOR_DELIVERY'">
+
+
+
+          <button type="submit" value="Add" style="width: 50%;" class="btn btn-dark btn-sm"
+            [disabled]="flag" (click)="makeFinalDelivery(singleAssetData.assetId); flag = true;">
+            <i class="fa fa-shopping-bag"></i>
+            Make Final Delivery
+          </button>
+        </div>
+
+      </div>
+      <p class="text-center text-success h5" *ngIf="singleAssetData?.assetState == 'DELIVERED'">
+        Asset has been delivered successfully !!!
+      </p>
+    </form>
+  </div> -->

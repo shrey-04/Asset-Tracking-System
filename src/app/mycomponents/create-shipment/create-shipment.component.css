@@ -1,0 +1,33 @@
+/* .form-group
+{
+    padding-left: 3%;
+    text-align: left;
+    padding-top: 1%;
+} */
+.col-md-offset-3
+{
+    padding-left: 3%;
+
+}
+.btn-xs
+{
+    height: 40%;
+}
+
+input.ng-dirty.ng-invalid {
+    border: 2px solid #ff0000
+}
+
+input.ng-dirty.ng-valid {
+    border: 2px solid #6bc502
+}
+
+input[type= "text"] {
+  border: 1px solid grey;
+  border-radius: 8px;
+}
+
+.btn-dark {
+  background-color: rgba(0, 0, 0, 0.945);
+}
+/* (consigneeDetails.controls['name'].value!='Search User'?'border: 2px solid #6bc502':'') */

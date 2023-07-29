@@ -1,0 +1,139 @@
+<div class="container">
+  <div class="row mt-3">
+    <div class="col-sm-8">
+      <div class="container-fluid">
+
+
+      </div>
+      <br>
+      <div class="card card-info shadow-sm">
+
+        <div class="card-header">
+          Tracking Details :
+          <br />
+          Asset Id - {{assetId}}
+        </div>
+        <div class="card-body d-flex justify-content-center">
+          <div class="tracker center p-3">
+            <div class="iconsDisplay" *ngFor="let icon of icons; index as i">
+              <span [ngClass]="icon" class="fa-2x center" [style.backgroundColor]="iconColor[i]"></span>
+              <div class="barIcon" *ngIf="i < (icons.length-1)">
+                <div class="fas fa-truck fa-1x truck"
+                  *ngIf="barColor[i]!=emptyBarColor && barColor[i]!=completeBarColor">
+                </div>
+                <div class="bar" [style.background]="barColor[i]"></div>
+              </div>
+            </div>
+            <div class="row text-center text-nowrap" style="font-size: small;">
+              <div class="col-sm-2 ">
+                <span>Supplier</span>
+              </div>
+              <div class="col-sm-3">
+              </div>
+              <div class="col-sm-2">
+                <span>Warehouse</span>
+              </div>
+              <div class="col-sm-3">
+              </div>
+              <div class="col-sm-2">
+                <span>consignee</span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+        <div class="card-footer d-flex justify-content-end bg-white">
+
+          <!-- <button type="button" class="btn  bg-success" data-bs-toggle="modal" data-bs-target="#exampleModal">
+            View on Map <i class=" ml-2 fas fa-map-marked-alt"></i>
+          </button> -->
+          <button type="button" class="btn  bg-success"
+            [routerLink]="['/shipmentDetails/transactions/viewMap',assetId]">
+            View on Map <i class=" ml-2 fas fa-map-marked-alt"></i>
+          </button>
+
+        </div>
+      </div>
+      <!-- <button name="View" type="button" class="btn btn-round btn-info btn-sm" data-bs-toggle="modal" data-bs-target="#exampleModal">
+        <i class="fa fa-eye"></i>View Map
+      </button> -->
+
+    </div>
+    <div class="col-sm-4 mt-4">
+      <qr-code [value]="qrTrackingDetails" [size]=200 class=" d-flex justify-content-center"></qr-code>
+      <p class="text-center mt-3 h5">Scan QR code</p>
+    </div>
+  </div>
+
+  <div class="card card-info ">
+    <div class="card-header">
+      <div class="d-flex justify-content-between">
+       <span class="pt-1">Tracking Details</span>
+        <button [routerLink]="'/shipmentDetails'"  class = "btn btn-round fw-bold text-info bg-light btn-white btn-sm">
+          <i class="fas fa-arrow-left"></i> Shipment Details
+        </button>
+      </div>
+    </div>
+    <div class="card-body" *ngIf="assetTrackingDetailsList.length> 0">
+      <table class="table mt-0 table-bordered table-striped">
+        <thead>
+          <tr>
+            <th>Transaction Hash</th>
+            <th>Tracking Message</th>
+            <th>Transaction Time</th>
+          </tr>
+        </thead>
+        <tbody style="vertical-align: middle;" *ngFor="let trackingDetails of assetTrackingDetailsList;">
+          <tr>
+            <!-- <td class="aligh-td">
+               {{trackingDetails.assetId}}
+              </td> -->
+
+            <td class="aligh-td">
+              <!-- <a [href]="'http://localhost:25000/tx/' + trackingDetails.transactionHash"> -->
+                <a [href]="awsBesuIp + trackingDetails.transactionHash">
+                {{trackingDetails.transactionHash}}</a>
+            </td>
+            <!-- <td class="aligh-td">
+                                            {{assets.assetState}}
+                                    </td> -->
+            <td class="aligh-td">
+              {{trackingDetails.trackingMessage}}
+            </td>
+            <td class="aligh-td">
+
+              {{trackingDetails.transactionTime | date: 'mediumTime'}}
+            </td>
+
+
+
+          </tr>
+        </tbody>
+
+      </table>
+
+      <!-- <div id="map" style="width: 100%; height: 530px;"></div> -->
+    </div>
+    <!-- /.card-body -->
+  </div>
+  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="mapModal" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-xl">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="mapModal">View Map</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <!-- <agm-map [latitude]="20" [longitude]="77" [zoom]="5">
+              <agm-marker [latitude]="origin.lat" [longitude]="origin.lng"></agm-marker>
+              <agm-marker [latitude]="destination.lat" [longitude]="destination.lng"></agm-marker>
+            </agm-map> -->
+          <div id="map" style="width: 70%; height: 530px;"></div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

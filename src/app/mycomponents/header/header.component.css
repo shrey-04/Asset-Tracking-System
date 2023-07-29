@@ -1,0 +1,70 @@
+.notify_data{
+    margin: 0;
+    width: 300px;
+    display: flex;
+    border-bottom: solid rgba(0, 0, 0, 0.068);
+    padding: 3%;
+    /* background-color: rgb(222, 239, 241); */
+  }
+  
+  .notify_data .info{
+    font-size: 14px;
+    width: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin-top: 2px;
+  }
+  .status{ 
+    font-size: 10px;
+    height: fit-content;
+    width: fit-content;
+    margin-top: 2px;
+    cursor: pointer;
+    margin-left: 5px;
+    color: rgba(0, 0, 0, 0.377);
+  }
+  .status:hover{
+    color: rgb(211, 5, 5);
+  }
+  .show_all{
+    padding: 5px;
+    text-align: center;
+    height: fit-content;
+  }
+  
+  .show_all span{
+    font-weight: bold;
+    color: #3b80f9;
+    cursor: pointer;
+  }
+  
+  .show_all span:hover{
+    text-decoration: underline;
+  }
+
+  .fa-wallet{
+    color: gray;
+  }
+  .fa-wallet:hover{
+    color: black;
+  }
+
+  /* .fa-download{
+    color: gray;
+  }
+  .fa-download:hover{
+    color: black;
+  } */
+
+
+
+#check{
+    color: grey;
+    cursor: pointer;
+}
+
+#check:hover{
+    color: rgba(0, 128, 0, 0.952) ;
+
+}

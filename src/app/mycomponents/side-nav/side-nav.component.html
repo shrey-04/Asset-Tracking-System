@@ -1,0 +1,68 @@
+<!-- Main Sidebar Container -->
+
+<aside class="main-sidebar sidebar-dark-primary elevation-4" #sidenav mode="push" opened="true" *ngIf="showMenu"
+  mat-disable-backdrop #start>
+  <!-- Brand Logo -->
+  <p  class="brand-link text-center pr-4">
+   Logistics
+    <!-- <img src="dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8"> -->
+    <!-- <img src="assets/template/images/xoriantlogo.png" alt="Logistics" style="height: 5%; width: 70%;" class="ml-3"> -->
+    <!-- <span class="brand-text font-style d-flex justify-content-center"></span> -->
+  </p>
+
+  <!-- Sidebar -->
+  <div class="sidebar">
+    <!-- Sidebar user panel (optional) -->
+    <div class="user-panel mt-1 mb-1">
+      <!-- <div class="image"> -->
+        <!-- <img src="dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image"> -->
+      <!-- </div> -->
+      <!-- <div> -->
+        <p class="text-white text-center pr-4">{{userName}}</p>
+        <!-- <p class="text-white">Admin</p> -->
+      <!-- </div> -->
+    </div>
+
+    <!-- SidebarSearch Form -->
+    <!-- <div class="form-inline">
+      <div class="input-group" data-widget="sidebar-search">
+        <input class="form-control form-control-sidebar" type="search" placeholder="Search" aria-label="Search">
+        <div class="input-group-append">
+          <button class="btn btn-sidebar">
+            <i class="fas fa-search fa-fw"></i>
+          </button>
+        </div>
+      </div>
+    </div> -->
+
+
+    <nav class="mt-2">
+      <ul class="nav  nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+        <nav class="mt-2">
+          <ul class="nav flex-column" data-widget="treeview" role="menu" data-accordion="false">
+            <li class="nav-item"  *ngFor="let menu of menuList;let i = index">
+              <a  class="nav-link" id = "links" *ngIf="menu.parentMenuId == 0" (click)="toogle(menu.menuId)"
+                [routerLink]="menu.routerName" routerLinkActive = "active">
+                &nbsp;&nbsp; <i [class]="menu.menuIconName"></i>
+                <p>
+                  {{menu.menuDisplayName}}
+                  <i *ngIf="isNested[i]" class="fas fa-angle-left right"></i>
+                  <!-- <span class="badge badge-info right"></span> -->
+                </p>
+              </a>
+              <ul class="nav nav-treeview" *ngIf="toggleMenu[i]" >
+                <li class="nav-item" *ngFor="let child of subMenu">
+                  <a *ngIf="child.parentMenuId == menu.menuId" id = "sublinks" [routerLink]="child.routerName" [state]="{ menuId: menu.menuId}" routerLinkActive = "active" class="nav-link ml-3">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>{{child.menuDisplayName}}</p>
+                  </a>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </nav>
+      </ul>
+    </nav>
+  </div>
+  <!-- /.sidebar -->
+</aside>

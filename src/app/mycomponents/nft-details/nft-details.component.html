@@ -1,0 +1,230 @@
+<br>
+<div class="container">
+    <div class="row" *ngIf="showItem">
+        <div class="col-sm-5">
+            <div class="card shadow rounded">
+                <pdf-viewer class="border img-thumbnail rounded mt-3 mb-3 mx-auto" [src]="data.tokenUri" [rotation]="0"
+                    [original-size]="false" [show-all]="true" [fit-to-page]="false" [zoom]="1"
+                    [zoom-scale]="'page-width'" [stick-to-page]="false" [render-text]="true"
+                    [external-link-target]="'blank'" [autoresize]="true" [show-borders]="false"
+                    style="height: 500px; width: 400px;"></pdf-viewer>
+                <!-- <img class="img-fluid border img-thumbnail rounded mt-3 mb-3 mx-auto" src="../../../assets/agreement.jfif" alt="my-img" style="height: 500px; width: 400px;"/> -->
+                <!-- <div class="card-header mt-2">
+                    <div class="d-flex justify-content-end"> -->
+                <!-- <span class="card-text h6">Price</span><br /> -->
+                <!-- <span class="card-text h6"><i class="far fa-heart"></i></span>
+                        
+                    </div>
+                </div> -->
+            </div>
+            <div class="card shadow rounded mt-5">
+                <div class="card-header h6">
+                    <span class="me-2" style="font-size: 19px; "><i class="fas fa-align-left"></i></span> Description
+                </div>
+                <div class="card-body">
+                    <table class="table">
+                        <tbody>
+                            <tr>
+                                <td>Contract Address</td>
+                                <td>
+                                    <div> {{data.nftContract}} </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Token ID</td>
+                                <td>{{data.tokenId}}</td>
+                            </tr>
+                            <tr>
+                                <td>Token Standard</td>
+                                <td>ERC-721</td>
+                            </tr>
+                            <tr>
+                                <td>Blockchain</td>
+                                <td>Logistics Chain</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-6">
+
+            <div class="ms-3 mt-3">
+
+                <a href="" class="text-decoration-none fs-6 ">Created By {{data.metaData.sellerName}} <br>
+                    {{data.seller}}</a>
+                <h2 class="mt-2 fs-5">{{data.metaData.NFTName}} {{data.itemId}} </h2>
+                <p class="fs-6">owned by {{data.owner}}</p>
+                <h3 class="mb-4 fs-4">Price : {{data.price}} LST</h3>
+                <button *ngIf="(!data.sold && data.metaData.sellerName!=userName)" class="btn btn-outline-primary d-grid gap-2 col-6"
+                    (click)="buyNFT()">Buy</button>
+                <button *ngIf="data.sold && data.metaData.sellerName!=userName" class="btn btn-primary d-grid gap-2 col-6"
+                    (click)="initiateTrade(trade)">Initiate Trade</button>
+            </div>
+
+            <!-- <div class="card shadow rounded">
+                <div class="card-header h6 mt-2 mb-2">
+                    
+                </div>
+                <div class="card-body mt-2 mb-2">
+                    
+                </div>
+            </div> -->
+
+
+            <div class="card shadow rounded mt-5 mb-3">
+                <div class="card-header">
+                    <h4> <span class="me-2" style="font-size: 19px; "> <i class="fas fa-tag"></i> </span> Listings </h4>
+                </div>
+                <div class="card-body ">
+                    <table class="table ">
+                        <thead>
+                            <tr>
+                                <th>Item ID</th>
+                                <th>Price</th>
+                                <th>NFT Type</th>
+                                <th>From</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="table-light">
+                                <td> {{data.itemId}} </td>
+                                <td>{{data.price}} LST</td>
+                                <td>{{data.metaData.NFTtype}}</td>
+                                <td>{{data.metaData.sellerName}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+
+
+            <div class="card shadow rounded mt-5 mb-3">
+                <div class="card-header">
+                    <h4> <span class="me-2" style="font-size: 19px; "><i style="transform: rotate(90deg);"
+                                class="fas fa-exchange-alt"></i></span> Item Activity </h4>
+                </div>
+                <div class="card-body ">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Event</th>
+                                <th>Price</th>
+                                <th>From</th>
+                                <th>To</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngIf="data.sold">
+                                <td><span class="me-2" style="font-size: 15px; "><i
+                                            class="fas fa-exchange-alt"></i></span>Transfer</td>
+                                <td>{{data.price}} LST</td>
+                                <td>
+                                    <div>0x0000000000000000000000000000000000000000</div>
+                                </td>
+                                <td>
+                                    <div>{{data.owner}}</div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><span class="me-2" style="font-size: 15px; "><i class="fas fa-tag"></i></span> List
+                                </td>
+                                <td>{{data.price}} LST</td>
+                                <td>
+                                    <div>{{data.seller}}</div>
+                                </td>
+                                <td>
+                                    <div>0x0000000000000000000000000000000000000000</div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><span class="me-2" style="font-size: 15px; "><i class="fas fa-dolly"></i></span>
+                                    Minted</td>
+                                <td>{{data.price}} LST</td>
+                                <td>
+                                    <div>Null</div>
+                                </td>
+                                <td>
+                                    <div> {{data.seller}} </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+    <!-- <br/>
+    <div class="row">
+        <div class="col-sm-5">
+            
+        </div>
+    </div> -->
+</div>
+
+
+<!-- ------------------- Show Private Key --------------------- -->
+
+<ng-template #trade let-modal>
+    <!-- <div class="modal-dialog modal-dialog-centered"> -->
+    <div class="modal-header">
+        <p class="text-center fs-4">Initiate Trade</p>
+        <button type="button" class="btn-close" (click)="modal.dismiss()" aria-label="Close"></button>
+    </div>
+    <div class="modal-body">
+        <form [formGroup]="tradeForm" (ngSubmit)="sendTradeRequest()">
+            <div class="mb-3">
+                <label for="assetName" class="col-form-label">Asset Name:</label>
+                <input type="text" class="form-control" placeholder="Enter Asset Name" id="assetName"
+                    formControlName="assetName">
+            </div>
+            <div class="mb-3">
+                <label for="info" class="col-form-label">Asset Description:</label>
+                <input type="text" class="form-control" placeholder="Enter Asset Description" id="info"
+                    formControlName="info">
+            </div>
+            <div class="mb-3">
+                <label for="assetType" class="col-form-label">Asset Type:</label>
+                <input type="text" class="form-control" placeholder="Enter Asset Type" id="assetType"
+                    formControlName="assetType">
+            </div>
+            <div class="mb-3">
+                <label for="quantity" class="col-form-label">Asset Quantity:</label>
+                <input type="text" class="form-control" placeholder="Enter Asset Quantity" id="quantity"
+                    formControlName="quantity">
+            </div>
+            <div class="mb-3">
+                <label for="address" class="col-form-label">Your Address:</label>
+                <input type="text" class="form-control" placeholder="Enter Your Addresse" id="address"
+                    formControlName="address">
+            </div>
+            <div class="mb-3">
+                <label for="mobile_no" class="col-form-label">Mobile No:</label>
+                <input type="text" class="form-control" placeholder="Enter Mobile No" id="mobile_no"
+                    formControlName="mobile_no">
+            </div>
+            
+            <button type="submit" class="btn btn-primary" [disabled]="tradeForm.invalid">
+                <!-- <i class="fa fa-plus"></i> -->
+                Initiate Trade
+            </button>
+        </form>
+        <!-- <p class="ps-2">This is your public key</p>
+            <div class="card p-3 border border-dark">
+                {{publicKey}}
+            </div>
+            <p class="ps-2">This is your private key</p>
+            <div class="card p-3 text-danger border border-dark">
+                {{privateKey}}
+            </div>
+            <div class="card text-danger p-3" style="background-color: #fdeff1;">
+                Warning: Never disclose your private key. Anyone with your private keys can steal any assets held in your account.
+            </div> -->
+    </div>
+    <!-- </div> -->
+</ng-template>

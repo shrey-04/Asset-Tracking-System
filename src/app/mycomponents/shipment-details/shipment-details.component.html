@@ -1,0 +1,393 @@
+<section class="content-header">
+  <div class="container-fluid">
+    <div class="row mb-2">
+      <div class="col-sm-6">
+        <h1>Shipment details</h1>
+      </div>
+      <!-- <div class="col-sm-6">
+        <ol class="breadcrumb float-sm-right">
+          <li class="breadcrumb-item">View</li>
+          <li class="breadcrumb-item">Modify State</li>
+
+          <li class="breadcrumb-item">Tracking Details</li>
+
+        </ol>
+      </div> -->
+    </div>
+  </div><!-- /.container-fluid -->
+</section>
+<div class="container">
+  <div class="card card-info">
+    <div class="card-header">
+      Shipment Details
+    </div>
+    <!-- /.card-header -->
+    <div class="card-body" *ngIf="assetDetailsList.length> 0">
+      <table id="example1" class="table table-bordered table-striped">
+        <thead>
+          <tr>
+            <th>Asset Name</th>
+            <th>Asset Description</th>
+            <th>Supplier Address</th>
+            <th>Consignee Address</th>
+            <th>Status</th>
+            <th>View</th>
+            <!-- <th>Modify Status</th> -->
+            <th>Update Tracking</th>
+            <th>Track Asset</th>
+
+          </tr>
+        </thead>
+        <tbody *ngFor="let assets of assetDetailsList;" style="background-color: rgba(0, 0, 0, 0.05);">
+          <tr>
+            <td>
+              {{assets.assetName}}
+            </td>
+            <td>
+              {{assets.info}}
+            </td>
+
+            <td>
+              {{assets.sourceAddress}}
+            </td>
+            <td class="aligh-td">
+              {{assets.destinationAddress}}
+            </td>
+            <td *ngIf="assets.assetState=='CREATED'" class="aligh-td">
+              Created
+            </td>
+            <td *ngIf="assets.assetState=='DISPATCHED'" class="aligh-td">
+              Dispatched
+            </td>
+            <td *ngIf="assets.assetState=='IN_TRANSIT'" class="text-nowrap">
+              At Warehouse
+            </td>
+            <td *ngIf="assets.assetState=='FINAL_STATION'" class="aligh-td">
+              At Final Destination
+            </td>
+            <td *ngIf="assets.assetState=='OUT_FOR_DELIVERY'" class="aligh-td">
+              Out For Delivery
+            </td>
+            <td *ngIf="assets.assetState=='DELIVERED'" class="aligh-td">
+              Delivered
+            </td>
+            <td>
+              <button name="View" type="button" value="View"
+                class="btn btn-round text-dark btn-outline-info btn-sm text-nowrap"
+                (click)="open(content,assets?.assetId)">
+                <i class="fa fa-eye"></i>View
+              </button>
+
+            </td>
+
+            <td class="text-center">
+              <!-- <button name="Modify" type="button" *ngIf="assets.assetState=='DELIVERED'"
+              [routerLink]="['/shipmentDetails',assets?.assetId]" value="View" class="btn btn-round text-success btn-outline-success btn-sm"
+             [disabled]="true" >
+              <i class="fas fa-check"></i>Delivered
+            </button> -->
+
+            <button name="Modify" type="button" *ngIf="assets.assetState=='DELIVERED'"
+            [routerLink]="['/shipmentDetails',assets?.assetId]" value="View" class="btn btn-round text-success btn-outline-success btn-sm"
+           [disabled]="true" >
+            <i class="fas fa-check"></i>Delivered
+          </button>
+            <button name="Modify" type="button" *ngIf="assets.assetState!='DELIVERED' && !( userRoleName=='ROLE_SUPER_ADMIN' || (userRoleName=='ROLE_SUPPLIER' && assets.assetState=='CREATED') || (userRoleName=='ROLE_CARRIER' && assets.assetState!='IN_TRANSIT' &&  assets.assetState!='CREATED') || (userRoleName=='ROLE_WAREHOUSE' && assets.assetState=='IN_TRANSIT'))"
+            [routerLink]="['/shipmentDetails',assets?.assetId]" value="View" class="btn btn-round text-success btn-outline-success btn-sm"
+           [disabled]="true" >
+            In Transit
+          </button>
+            <button name="Modify" type="button" *ngIf="assets.assetState!='DELIVERED' && ( userRoleName=='ROLE_SUPER_ADMIN' || (userRoleName=='ROLE_SUPPLIER' && assets.assetState=='CREATED') || (userRoleName=='ROLE_CARRIER' && assets.assetState!='IN_TRANSIT' &&  assets.assetState!='CREATED') || (userRoleName=='ROLE_WAREHOUSE' && assets.assetState=='IN_TRANSIT'))"
+                [routerLink]="['/shipmentDetails',assets?.assetId]" value="View"
+                class="btn btn-round text-dark btn-outline-warning btn-sm">
+                <i class="fa fa-edit"></i>Update
+              </button>
+          <!-- <button name="Modify" type="button" *ngIf="assets.assetState!='DELIVERED' && (userRoleName=='Warehouse A' )   && assets.assetState=='CREATED' "
+            [routerLink]="['/shipmentDetails',assets?.assetId]" value="View" class="btn btn-round text-success btn-outline-success btn-sm"
+           [disabled]="true" >
+            <i class="fas fa-check"></i>Insufficient Privileges
+          </button>
+          <button name="Modify" type="button" *ngIf="assets.assetState!='DELIVERED' && (userRoleName=='Carrier '  )   && assets.assetState=='DISPATCHED' "
+          [routerLink]="['/shipmentDetails',assets?.assetId]" value="View" class="btn btn-round text-success btn-outline-success btn-sm"
+         [disabled]="true" >
+          <i class="fas fa-check"></i>Insufficient Privileges
+        </button>
+        <button name="Modify" type="button" *ngIf="assets.assetState!='DELIVERED' && (userRoleName=='Warehouse A'  )   && (assets.assetState=='IN_TRANSIT' || assets.assetState=='FINAL_STATION' || assets.assetState=='OUT_FOR_DELIVERY') "
+        [routerLink]="['/shipmentDetails',assets?.assetId]" value="View" class="btn btn-round text-success btn-outline-success btn-sm"
+       [disabled]="true" >
+        <i class="fas fa-check"></i>Insufficient Privileges
+      </button> -->
+              <!-- <button name="Modify" type="button" *ngIf="assets.assetState!='DELIVERED' && (userRoleName=='Super User' || userRoleName=='Carrier ') && assets.assetState=='CREATED' "
+                [routerLink]="['/shipmentDetails',assets?.assetId]" value="View" class="btn btn-round text-dark btn-outline-warning btn-sm"
+               >
+                <i class="fa fa-edit"></i>Pick Up from Supplier
+              </button>
+              <button name="Modify" type="button" *ngIf="assets.assetState!='DELIVERED' && (userRoleName=='Super User' || userRoleName=='Warehouse A') && assets.assetState=='DISPATCHED'"
+                [routerLink]="['/shipmentDetails',assets?.assetId]" value="View" class="btn btn-round text-dark btn-outline-warning btn-sm"
+               >
+                <i class="fa fa-edit"></i>Received At Warehouse
+              </button>
+              <button name="Modify" type="button" *ngIf="assets.assetState!='DELIVERED' && (userRoleName=='Super User' || userRoleName=='Carrier ') && assets.assetState=='IN_TRANSIT'"
+                [routerLink]="['/shipmentDetails',assets?.assetId]" value="View" class="btn btn-round text-dark btn-outline-warning btn-sm"
+               >
+                <i class="fa fa-edit"></i>Pick up from Warehouse
+              </button>
+              <button name="Modify" type="button" *ngIf="assets.assetState!='DELIVERED' && (userRoleName=='Super User' || userRoleName=='Carrier ')  && assets.assetState=='FINAL_STATION'"
+                [routerLink]="['/shipmentDetails',assets?.assetId]" value="View" class="btn btn-round text-dark btn-outline-warning btn-sm"
+               >
+                <i class="fa fa-edit"></i>Out for Delivery
+              </button>
+              <button name="Modify" type="button" *ngIf="assets.assetState!='DELIVERED' && (userRoleName=='Super User' || userRoleName=='Carrier ')  && assets.assetState=='OUT_FOR_DELIVERY'"
+                [routerLink]="['/shipmentDetails',assets?.assetId]" value="View" class="btn btn-round text-dark btn-outline-warning btn-sm"
+               >
+                <i class="fa fa-edit"></i>Make Final Delivery
+              </button> -->
+            </td>
+
+            <!-- <td class="text-center">
+              <button name="Modify" type="button" *ngIf="assets.assetState=='DELIVERED'"
+                [routerLink]="['/shipmentDetails',assets?.assetId]" value="View"
+                class="btn btn-round text-success btn-outline-success btn-sm" [disabled]="true">
+                <i class="fas fa-check"></i>Delivered
+              </button>
+              <button name="Modify" type="button" *ngIf="assets.assetState!='DELIVERED'"
+                [routerLink]="['/shipmentDetails',assets?.assetId]" value="View"
+                class="btn btn-round text-dark btn-outline-warning btn-sm">
+                <i class="fa fa-edit"></i>Update
+              </button>
+            </td> -->
+
+            <td>
+
+              <button name="Track" type="button"
+                class="btn btn-round text-dark btn text-nowrap btn-outline-success btn-sm"
+                [routerLink]="['/shipmentDetails/transactions',assets?.assetId]">
+                <i class="fa fa-truck"></i>Track Asset
+              </button>
+            </td>
+
+          </tr>
+      </table>
+    </div>
+    <!-- /.card-body -->
+  </div>
+</div>
+
+
+
+
+<!--
+  <div class="x_content">
+    <div *ngIf="assetDetailsList.length> 0">
+      <table id="datatable-responsive"
+        class="table table-striped table-bordered dt-responsive nowrap bulk_action" cellspacing="0"
+        width="100%">
+        <thead>
+          <tr>
+
+
+            <th>Asset Name</th>
+            <th>Asset Description</th>
+            <th>Source Address</th>
+            <th>Destination Address</th>
+            <th>View</th>
+            <th>Modify State</th>
+            <th>Track Asset</th>
+
+          </tr>
+        </thead>
+        <tbody style="vertical-align: middle;" *ngFor="let assets of assetDetailsList;">
+          <tr>
+            <td class="aligh-td">
+              {{assets.assetName}}
+            </td>
+            <td class="aligh-td">
+              {{assets.info}}
+            </td>
+
+                                  <td class="aligh-td">
+                                      {{assets.sourceAddress}}
+                              </td>
+                              <td class="aligh-td">
+                                  {{assets.destinationAddress}}
+                          </td>
+                          <td class="align-td-button">
+                              <button name="View" type="button" value="View"
+                              class="btn btn-round btn-info btn-sm" (click)="open(content,assets?.assetId)">
+                                  <i class="fa fa-eye"></i>View
+                              </button>
+                              </td>
+
+                              <td class="align-td-button">
+                                  <button name="Modify" type="button" style="background-color: cadetblue;"
+                                  [routerLink]="['/shipmentDetails',assets?.assetId]"
+                                    value="View" class="btn btn-round btn-warning btn-sm">
+                                      <i class="fa fa-edit"></i>Modify
+                                  </button>
+                                  </td>
+
+                                  <td class="align-td-button">
+
+                <button name="Track" type="button" style="background-color:
+                                      aliceblue;" value="View" class="btn btn-round btn-warning btn-sm"
+               [routerLink]="['/shipmentDetails/transactions',assets?.assetId]">
+                <i class="fa fa-truck"></i>Track Asset
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+
+    </div>
+
+
+  </div> -->
+
+<ng-template #content let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">
+      View Asset
+    </h4>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+
+      <span aria-hidden="true">
+        ×
+      </span>
+    </button>
+  </div>
+  <div class="modal-body" >
+    <div id="pdfData">
+    <div class="mb-3">
+      <qr-code [value]="qrCodeAssetData" [size] = 150 class=" d-flex justify-content-center"></qr-code>
+      <p class="text-center mt-3 h5">Scan QR code</p>
+    </div>
+      <!-- <h1 style="font-size: 18px;">
+                  View
+              </h1> -->
+      <div class="table-responsive">
+        <table class="table table-striped table-hover bulk_action">
+          <tbody>
+            <tr class="even pointer">
+              <th class="column-title">Asset Id</th>
+              <td class="view-page-td">{{singleAssetData.assetId}}</td>
+            </tr>
+            <tr class="even pointer">
+              <th class="column-title">Asset Name</th>
+              <td class="view-page-td">{{singleAssetData.assetName}}</td>
+            </tr>
+            <tr class="even pointer">
+              <th class="column-title">Asset Description</th>
+              <td class="view-page-td">{{singleAssetData.info}}</td>
+            </tr>
+            <tr class="even pointer">
+              <th class="column-title">Asset State</th>
+              <td *ngIf="singleAssetData.assetState=='CREATED'" class="aligh-td">
+                Created
+              </td>
+              <td *ngIf="singleAssetData.assetState=='DISPATCHED'" class="aligh-td">
+                Dispatched
+              </td>
+              <td *ngIf="singleAssetData.assetState=='IN_TRANSIT'" class="aligh-td">
+                In Transit
+              </td>
+              <td *ngIf="singleAssetData.assetState=='FINAL_STATION'" class="aligh-td">
+                At Warehouse
+              </td>
+              <td *ngIf="singleAssetData.assetState=='OUT_FOR_DELIVERY'" class="aligh-td">
+                Out For Delivery
+              </td>
+              <td *ngIf="singleAssetData.assetState=='DELIVERED'" class="aligh-td">
+                Delivered
+              </td>
+            </tr>
+
+
+
+            <tr class="even pointer">
+              <th class="column-title">Supplier Address</th>
+              <td class="view-page-td">{{singleAssetData.sourceAddress}}</td>
+            </tr>
+            <tr class="even pointer">
+              <th class="column-title text-nowrap">Consignee Address</th>
+              <td class="view-page-td">{{singleAssetData.destinationAddress}}</td>
+            </tr>
+            <tr class="even pointer">
+              <th class="column-title">Asset Created On</th>
+              <td class="view-page-td">{{singleAssetData.assetCreationTime | date:'dd/MM/yyyy HH:mm:ss' }}</td>
+            </tr>
+            <tr class="even pointer" *ngIf="singleAssetData.assetState=='DELIVERED'">
+              <th class="column-title">Invoice No</th>
+              <td class="view-page-td">{{singleAsset.invoice}}</td>
+            </tr>
+            <tr class="even pointer" *ngIf="singleAssetData.assetState=='DELIVERED'">
+              <th class="column-title">Received Date</th>
+              <td class="view-page-td">{{singleAsset.receivedDate | date:'dd/MM/yyyy HH:mm:ss' }}</td>
+            </tr>
+
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div class="text-center " *ngIf="singleAssetData.assetState!='DELIVERED'">
+      <hr />
+      Note: Invoice will be generated once the shipment has been delivered.
+    </div>
+    <div class="text-center " *ngIf="singleAssetData.assetState=='DELIVERED'">
+      <button class="btn btn-success btn-block" (click)="exportToPdf(singleAssetData.assetId)"><i class="fas fa-cloud-download-alt"></i> Download PDF </button>
+    </div>
+  </div>
+
+
+</ng-template>
+
+
+
+
+<!-- tracking details ng template -->
+
+<ng-template #contentTrackingDetails let-modal>
+  <div class="container">
+    <div class="row">
+
+      <div class="modal-header">
+        <h4 class="modal-title" id="modal-basic-title">
+          View Asset Tracking Details
+        </h4>
+        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+
+          <span aria-hidden="true">
+            ×
+          </span>
+        </button>
+      </div>
+      <div class="card w-75 mx-auto shadow mt-5">
+
+
+        <div class="tracker center">
+
+          <div class="iconsDisplay" *ngFor="let icon of icons; index as i">
+            <span [ngClass]="icon" class="fa-2x center" [style.backgroundColor]="iconColor[i]"></span>
+            <div class="barIcon" *ngIf="i < (icons.length-1)">
+              <div class="fas fa-truck fa-1x truck" *ngIf="barColor[i]!=emptyBarColor && barColor[i]!=completeBarColor">
+              </div>
+              <div class="bar" [style.background]="barColor[i]"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+      <table class="table mt-5 table-hover shadow table-striped table-responsive-sm w-75 mx-auto bg-light">
+        <tbody>
+          <tr *ngFor="let track of assetTrackingDetails;">
+            <td class="msg">{{track.details}}</td>
+          </tr>
+        </tbody>
+      </table>
+
+
+
+    </div>
+  </div>
+
+</ng-template>

@@ -1,0 +1,261 @@
+<section class="content-header">
+  <div class="container-fluid">
+    <div class="row mb-2">
+      <div class="col-sm-6">
+        <h1>Privileges</h1>
+      </div>
+      <!-- <div class="col-sm-6">
+        <ol class="breadcrumb float-sm-right">
+          <li class="breadcrumb-item">Add</li>
+          <li class="breadcrumb-item active">View</li>
+          <li class="breadcrumb-item active">Modify</li>
+
+        </ol>
+      </div> -->
+    </div>
+  </div><!-- /.container-fluid -->
+</section>
+<!-- Main content -->
+<section class="content">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="card card-info">
+          <div class="card-header">
+            Manage Role Screen
+          </div>
+          <form>
+            <div class="card-body">
+              <!-- <div class="row mt-3 container" >
+                <div class="col-md-10"></div>
+                <div class="col-md-2 text-right">
+                  <button type="button" value="Add" class="btn btn-primary mt-2">
+                    <i class="fa fa-plus"></i>
+                    Add Role
+                  </button>
+                </div>
+              </div> -->
+              <div class="row mt-3 container" >
+                <table class="table table-bordered">
+                  <thead>
+                    <tr>
+                      <th>Role</th>
+                      <th>Created By</th>
+                      <th>Created On</th>
+                      <th>Modified By</th>
+                      <th>Modified On</th>
+                      <th>Action</th>
+                    </tr>
+                  </thead>
+                  <tbody *ngIf="roleList" style="background-color: rgba(0, 0, 0, 0.164);" >
+                    <tr *ngFor="let role of roleList">
+                      <td>
+                        {{role.role | roleConverter | titlecase}}
+                      </td>
+                      <td>
+                        {{role.roleCreatedBy | titlecase}}
+                      </td>
+                      <td>
+                        {{(role.roleCreatedOn)? (role.roleCreatedOn | date ):"Not recorded"}}
+                      </td>
+                      <td>
+                        {{(role.modifiedBy)? (role.modifiedBy | titlecase) : "Not recorded"}}
+                      </td>
+                      <td>
+                        {{(role.modifiedOn)? (role.modifiedOn | date) :"Not recorded"}}
+                      </td>
+                      <td>
+                        <button name="edit" type="button" (click)="viewScreens(content, role.role)"
+                           value="Edit" class="btn btn-warning btn-round btn-sm">
+                          <i class="fa fa-edit"></i>Assign Screens
+                        </button>
+
+                       
+                        
+                      </td>
+                   </tr>
+              
+    
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- <section class="content" *ngIf="roleList.length>0">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-12">
+        <div class="card card-info">
+          <div class="card-header">
+            <h3 class="card-title">View Roles</h3>
+          </div>
+
+          <div class="card-body">
+            <table id="example2" class="table table-bordered table-hover">
+              <thead>
+                <tr>
+                  <th>Role Id</th>
+                  <th>Role Code</th>
+                  <th>Role Type</th>
+                  <th>Role Name</th>
+                  <th>Grant/Revoke</th>
+
+                </tr>
+              </thead>
+              <tbody style="background-color: rgba(0, 0, 0, 0.05);" *ngFor="let role of roleList;">
+                <td>
+                  {{role.id}}
+                </td>
+                <td>
+                  {{role.roleCode}}
+                </td>
+                <td>
+                  {{role.roleType}}
+                </td>
+                <td>
+                  {{role.roleName}}
+                </td>
+
+                <td>
+                  <button name="Modify" type="button" value="Modify"
+                    class="btn btn-round btn-warning btn-sm" (click)="viewPrivileges(content,role?.id)">
+                    <i class="fa fa-edit"></i>Assign/Revoke
+                  </button>
+                </td>
+
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section> -->
+
+
+
+
+<ng-template #content let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">
+      View Privilege
+    </h4>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+
+      <span aria-hidden="true">
+        ×
+      </span>
+    </button>
+  </div>
+  <div class="modal-body">
+
+
+    <div class="container">
+      <div class="card">
+        <form [formGroup]="assignScreenForm" (ngSubmit)="assignScreen()">
+          <div class="card-body">
+            <div class="row" *ngFor="let menu of menuList;let i = index">
+              <div class="col-sm-8">
+                <label class="col-form-label"> 
+                  <span class="ml-3" *ngIf="menu.parentMenuId!=0"></span>
+                  <i [class]="menu.menuIconName" *ngIf="menu.parentMenuId==0"></i> 
+                  <i class="far fa-circle" *ngIf="menu.parentMenuId!=0"></i> 
+                  {{menu.menuDisplayName}}<i *ngIf="isNested[i]"  class="fas fa-angle-down p-1"></i>
+                </label>
+                <!-- <ul class="list-unstyled" *ngIf="toggleMenu[i]">
+                  <li *ngFor="let child of subMenu" class="ml-3">
+                    <label>
+                      <i class="far fa-circle"></i> {{child.menuDisplayName}}
+                    </label>
+                  </li>
+                </ul> -->
+              </div>
+              <div class="col-sm-4">
+                <input type="checkbox" class="form-check-input" *ngIf="!isNested[i]" (change)="onChange(menu, $event)" (value)="menu" />
+                <!-- (change)="termsChange($event)"> -->
+                <!-- <ul class="list-unstyled" *ngIf="toggleMenu[i]">
+                  <li class="mt-2" *ngFor="let child of subMenu" >
+                    <br>
+                    <input type="checkbox" class="form-check-input" (value)="child" (change)="onChange(child, $event)"/>
+                  </li>
+                </ul> -->
+              </div>
+            </div>
+          </div>
+          <div class="card-footer d-flex justify-content-end">
+            <button type="submit" class="btn btn-round btn-info btn-sm">
+              <!-- (click)="assignPrivileges(roleIdGlobal);" > -->
+              <i class="fa fa-edit"></i>Assign
+            </button>
+          </div>
+        </form>
+      </div>
+
+      
+      <!-- <div class="left_col scroll-view">
+
+
+        <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
+
+          <div class="menu_section">
+
+            <ul class="nav side-menu">
+
+
+              <li class="nav-item" style="width:100%" *ngFor="let menu of menuList;let i = index">
+                <a href="#" class="nav-link" *ngIf="menu.parentMenuId == 0" (click)="toogle(menu.menuId)">
+                  &nbsp;&nbsp; <i [class]="menu.menuIconName"></i>
+                  <p>
+                    <input type="checkbox" class="form-check-input" id="exampleCheck2" value="{{menu.menuId}}"
+                      (change)="termsChange($event)">
+                    {{menu.menuDisplayName}} -->
+                    <!-- <i *ngIf="isNested[i]" class="fas fa-angle-left right"></i> -->
+                  <!-- </p>
+                </a> -->
+                <!-- <ul class="nav nav-treeview" [style.display]="toggleMenu? 'block':'none'">
+                  <li class="nav-item" *ngFor="let child of subMenu">
+                    <a *ngIf="child.parentMenuId == menu.menuId" class="nav-link">
+                      <input type="checkbox" class="form-check-input" id="exampleCheck2" value="{{child.menuId}}"
+                        (change)="termsChange($event)">
+
+                      <p>{{child.menuDisplayName}}</p>
+                    </a>
+                  </li>
+                </ul> -->
+              <!-- </li>
+
+
+            </ul>
+          </div>
+
+
+
+          <div></div>
+          <div class="center">
+
+
+
+
+
+
+          </div>
+          <div style="padding-top: 1em;"></div>
+        </div>
+        <button name="Modify" type="button" style="background-color: cadetblue;"
+          (click)="assignPrivileges(roleIdGlobal);" value="Modify" class="btn btn-round btn-warning btn-sm">
+          <i class="fa fa-edit"></i>Assign
+        </button>
+
+
+      </div> -->
+    </div>
+
+
+  </div>
+
+</ng-template>

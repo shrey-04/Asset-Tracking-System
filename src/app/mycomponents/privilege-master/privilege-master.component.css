@@ -1,0 +1,21 @@
+.form-group
+{
+    padding-left: 3%;
+    text-align: left;
+    padding-top: 1%;
+}
+.col-md-offset-3
+{
+    padding-left: 3%;
+
+}
+.btn-xs
+{
+    height: 40%;
+}
+
+
+input:checked
+{
+    background-color: #1f5a96;
+}

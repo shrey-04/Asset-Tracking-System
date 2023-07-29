@@ -1,0 +1,11 @@
+td>div {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    width: 130px
+}
+
+td>div:hover {
+    white-space: normal;
+    overflow: visible;
+}
